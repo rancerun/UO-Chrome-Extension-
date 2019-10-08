@@ -1,0 +1,30 @@
+  
+{
+  "manifest_version": 2,
+  "name": "User Affinity Tracker",
+  "version": "1.0",
+  "description": "Tracks user browsing habits",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.urbanoutfitters.com/new-arrivals*"],
+      "js": ["newArrivalsScript.js"]
+    },
+    {
+      "matches": ["https://*.urbanoutfitters.com/*"],
+      "exclude_matches": ["https://*.urbanoutfitters.com/new-arrivals*"],
+      "js": ["incrementScript.js"]
+    }
+  ],
+  "page_action": {
+    "default_title": "Affinity Tracker",
+    "default_popup": "popup.html",
+    "default_icon": "urban_outfitters_logo.png"
+  },
+  "permissions" : ["declarativeContent", "storage"],
+  "externally_connectable": {
+    "matches": ["https://*.urbanoutfitters.com/*"]
+  }
+}
